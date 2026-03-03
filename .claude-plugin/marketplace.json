@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "im-html-style-guide",
+  "description": "Integral Media brand style guide for creating HTML documents",
+  "owner": {
+    "name": "Integral Media",
+    "email": "dev@integralmedia.com.au"
+  },
+  "plugins": [
+    {
+      "name": "im-html-style-guide",
+      "description": "Brand style guide, colour palette, typography, components, and HTML template for Integral Media branded documents",
+      "source": "./",
+      "skills": ["./skills/im-html-style-guide"],
+      "category": "content"
+    }
+  ]
+}

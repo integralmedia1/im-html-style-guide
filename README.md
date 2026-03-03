@@ -1,42 +1,58 @@
-# im-html-style-guide
+# IM HTML Style Guide
 
-Claude Code plugin for creating Integral Media branded HTML documents.
-
-Provides the full IM brand style guide, colour palette, typography rules, component reference, and a ready-to-use HTML template — so Claude automatically follows brand guidelines when generating HTML reports, presentations, or documents.
+Claude Code plugin that teaches Claude the Integral Media brand rules — so when you ask it to create an HTML report, presentation, or document, it automatically uses the right colours, fonts, logo, and layout.
 
 ## Install
 
-```bash
-# From GitHub
-/plugin install integralmedia1/im-html-style-guide
+In Claude Code, run these two commands:
 
-# From local clone
-git clone git@github.com:integralmedia1/im-html-style-guide.git
-/plugin install ./im-html-style-guide
+```bash
+# 1. Add the marketplace (one-time)
+claude plugin marketplace add https://github.com/integralmedia1/im-html-style-guide.git
+
+# 2. Install the plugin
+claude plugin install im-html-style-guide
 ```
+
+Then restart Claude Code.
 
 ## Usage
 
-The skill auto-triggers when you ask Claude to create branded HTML documents. You can also invoke it directly:
+Just ask Claude to make an HTML document. Any of these work:
 
-```
-/im-html-style-guide
-```
+- "Create an HTML report for [client name]"
+- "Make a branded document about our SEO results"
+- "Build an IM presentation for the quarterly review"
 
-**Trigger phrases:** "create HTML report", "branded document", "IM report", "IM presentation", "HTML document for Integral Media"
+Claude will automatically use the brand template, inline the logo as SVG, and follow all style rules.
+
+You can also invoke the skill directly with `/im-html-style-guide`.
 
 ## What's included
 
-- Full brand colour palette (Sky Blue, Deep Navy, extended semantic colours)
-- Typography rules (Julius Sans One, Inter, JetBrains Mono)
-- Logo usage guidelines with inline SVG
-- Component reference (cards, callouts, steps, timelines, status grids, tables, tabs, architecture diagrams)
-- Self-contained HTML template with all CSS and inline logos
-- White-label considerations for partner brands
+| Component | What it does |
+|-----------|-------------|
+| **Style guide** | Colours, typography, logo rules, do's and don'ts |
+| **HTML template** | 888-line ready-to-go template with all CSS inline |
+| **Logo variants** | SVG (colour, black, white, dark bg) + PNG brandmarks |
+| **Component library** | Cards, callouts, steps, timelines, status grids, tables, tabs, diagrams |
+| **White-label rules** | How to strip IM branding for Higher Ranking / Purpose Digital |
 
-## Assets
+## Brand quick reference
 
-The `assets/` directory contains:
-- `im-document-template.html` — ready-to-use template with `<!-- TEMPLATE: Replace -->` markers
-- SVG logo variants (colour, black, white, dark background)
-- PNG brandmark variants (colour, black)
+| | Value |
+|---|---|
+| **Primary** | Sky Blue `#27C1F4` |
+| **Secondary** | Deep Navy `#002F6C` |
+| **Display font** | Julius Sans One (uppercase only, weight 400) |
+| **Body font** | Inter |
+| **Mono font** | JetBrains Mono |
+| **Max width** | 960px |
+| **Key rule** | Documents must be self-contained — inline CSS, inline SVG logos, no external stylesheets |
+
+## Uninstall
+
+```bash
+claude plugin uninstall im-html-style-guide
+claude plugin marketplace remove im-html-style-guide
+```

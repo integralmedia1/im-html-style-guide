@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- TEMPLATE: Replace title with document name -->
+<title>Document Title — Integral Media</title>
+<!-- Favicon: IM icon mark (inline SVG) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 166 142'><path d='M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144' fill='%2323B2EF'/><path d='M165.181 0H134.199V142H165.181V0Z' fill='%2323B2EF'/><path d='M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723' fill='%2323B2EF'/><path d='M15.4909 32.2727C24.0462 32.2727 30.9817 25.0482 30.9817 16.1364C30.9817 7.2245 24.0462 0 15.4909 0C6.9355 0 0 7.2245 0 16.1364C0 25.0482 6.9355 32.2727 15.4909 32.2727Z' fill='%2323B2EF'/></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* ── Brand Colours ── */
+    --navy: #002F6C;
+    --navy-light: #0a3d7a;
+    --sky: #27C1F4;
+    --sky-light: #4fd1ff;
+    --sky-muted: #e6f7fe;
+    --charcoal: #333740;
+    --cool-grey: #DCDDEB;
+    --slate: #64748b;
+    --warm-gray: #94a3b8;
+    --light: #f1f5f9;
+    --lighter: #f8fafc;
+    --white: #ffffff;
+    /* ── Semantic Colours ── */
+    --green: #22c55e;
+    --green-muted: #dcfce7;
+    --amber: #f59e0b;
+    --amber-muted: #fef3c7;
+    --red-muted: #fee2e2;
+    --red: #ef4444;
+    /* ── Typography ── */
+    --display: 'Julius Sans One', 'Trebuchet MS', sans-serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    background: var(--lighter);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 60px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(39,193,244,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sky), var(--navy), var(--sky));
+  }
+
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+  }
+
+  .hero-logo {
+    margin-bottom: 32px;
+    opacity: 0.92;
+  }
+
+  .hero-logo svg {
+    height: 28px;
+    width: auto;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--sky);
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    max-width: 620px;
+    font-weight: 300;
+  }
+
+  /* ══════════════════════════════════════════
+     NAVIGATION
+     ══════════════════════════════════════════ */
+  .nav-strip {
+    background: var(--white);
+    border-bottom: 1px solid var(--cool-grey);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-inner a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--slate);
+    padding: 16px 20px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav-inner a:hover {
+    color: var(--navy);
+    border-bottom-color: var(--sky);
+  }
+
+  /* ══════════════════════════════════════════
+     LAYOUT
+     ══════════════════════════════════════════ */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 70px 0 20px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION HEADERS
+     ══════════════════════════════════════════ */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--cool-grey);
+  }
+
+  .section-number {
+    font-family: var(--display);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--sky);
+    opacity: 0.35;
+    letter-spacing: 0px;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--navy);
+    letter-spacing: 0px;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════════
+     CARDS
+     ══════════════════════════════════════════ */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--cool-grey);
+    border-radius: 10px;
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: box-shadow 0.25s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 24px rgba(0,47,108,0.06);
+  }
+
+  .card h3 {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card h3 .icon {
+    width: 28px;
+    height: 28px;
+    background: var(--navy);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .card p, .card li {
+    color: #475569;
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li {
+    padding: 3px 0 3px 20px;
+    position: relative;
+  }
+
+  .card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sky);
+    opacity: 0.7;
+  }
+
+  /* ══════════════════════════════════════════
+     ARCHITECTURE DIAGRAM (code block)
+     ══════════════════════════════════════════ */
+  .arch-diagram {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    overflow-x: auto;
+  }
+
+  .arch-diagram pre {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+    white-space: pre;
+    margin: 0;
+  }
+
+  .arch-diagram .comment { color: rgba(255,255,255,0.3); }
+  .arch-diagram .highlight { color: var(--sky); }
+  .arch-diagram .accent { color: #86efac; }
+  .arch-diagram .warm { color: #fcd34d; }
+
+  /* ══════════════════════════════════════════
+     TIMELINE
+     ══════════════════════════════════════════ */
+  .timeline {
+    position: relative;
+    padding: 8px 0 8px 48px;
+    margin: 28px 0 12px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--sky), var(--cool-grey));
+    border-radius: 1px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -38px;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--sky);
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .timeline-text {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.65;
+  }
+
+  .timeline-text code {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    background: var(--sky-muted);
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ══════════════════════════════════════════
+     NUMBERED STEPS
+     ══════════════════════════════════════════ */
+  .step {
+    background: var(--white);
+    border: 1px solid var(--cool-grey);
+    border-radius: 10px;
+    padding: 32px;
+    padding-left: 88px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: box-shadow 0.25s;
+  }
+
+  .step:hover {
+    box-shadow: 0 4px 24px rgba(0,47,108,0.06);
+  }
+
+  .step-num {
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    width: 40px;
+    height: 40px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .step h3 {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  .step .auto-list {
+    background: var(--lighter);
+    border: 1px solid var(--cool-grey);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+
+  .step .auto-list p {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .step .auto-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+  }
+
+  .step .auto-list li {
+    font-size: 13.5px;
+    color: #475569;
+    padding: 3px 0 3px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .step .auto-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .step code {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    background: var(--sky-muted);
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .step .cond {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--amber-muted);
+    color: #92400e;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+  }
+
+  /* ══════════════════════════════════════════
+     STATUS CARDS (3-column grid)
+     ══════════════════════════════════════════ */
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0 16px;
+  }
+
+  .status-card {
+    background: var(--white);
+    border: 1px solid var(--cool-grey);
+    border-radius: 10px;
+    padding: 24px;
+    border-top: 3px solid var(--sky);
+    transition: box-shadow 0.25s;
+  }
+
+  .status-card:hover {
+    box-shadow: 0 4px 24px rgba(0,47,108,0.06);
+  }
+
+  .status-card.pause { border-top-color: var(--amber); }
+  .status-card.reactivate { border-top-color: var(--green); }
+  .status-card.offboard { border-top-color: var(--red); }
+
+  .status-card h4 {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .status-badge.paused { background: var(--amber-muted); color: #92400e; }
+  .status-badge.active { background: var(--green-muted); color: #166534; }
+  .status-badge.archived { background: var(--red-muted); color: #991b1b; }
+
+  .status-card p {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  .status-card ol {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+
+  .status-card ol li {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.7;
+    padding: 2px 0;
+  }
+
+  /* ══════════════════════════════════════════
+     CALLOUT BOX
+     ══════════════════════════════════════════ */
+  .callout {
+    background: var(--sky-muted);
+    border-left: 3px solid var(--sky);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  .callout strong { color: var(--navy); }
+
+  /* ══════════════════════════════════════════
+     TABLE
+     ══════════════════════════════════════════ */
+  .im-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+
+  .im-table th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--light);
+    color: var(--slate);
+    border-bottom: 1px solid var(--cool-grey);
+  }
+
+  .im-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+  }
+
+  .im-table code {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    background: var(--sky-muted);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--navy);
+  }
+
+  /* ══════════════════════════════════════════
+     TAB BAR (spreadsheet visualisation)
+     ══════════════════════════════════════════ */
+  .tab-bar {
+    display: flex;
+    gap: 2px;
+    padding: 8px 12px;
+    background: var(--cool-grey);
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+
+  .tab-bar .tab {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--slate);
+    white-space: nowrap;
+    border: 1px solid #c5c6d4;
+  }
+
+  .tab-bar .tab.active-tab {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+
+  .tab-bar .tab.hidden-tab {
+    background: transparent;
+    border-style: dashed;
+    border-color: #94a3b8;
+    color: #94a3b8;
+    font-style: italic;
+  }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ */
+  footer {
+    background: var(--navy);
+    padding: 32px 0;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  footer .footer-logo {
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  footer .footer-logo svg {
+    height: 22px;
+    width: auto;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+     ══════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    .hero { padding: 40px 0 36px; }
+    .hero h1 { font-size: 28px; }
+    .container { padding: 0 20px; }
+    .section-number { font-size: 40px; }
+    .section-title { font-size: 22px; }
+    .step { padding-left: 72px; }
+    .step-num { left: 20px; top: 28px; width: 34px; height: 34px; font-size: 17px; }
+    .status-grid { grid-template-columns: 1fr; }
+    .nav-inner a { font-size: 10px; padding: 14px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     Replace: label text, h1 title, description
+     ══════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <!-- Integral Media logo (colour on dark bg) — icon mark #23B2EF, wordmark white -->
+      <svg viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144" fill="#23B2EF"/>
+        <path d="M165.181 0H134.199V142H165.181V0Z" fill="#23B2EF"/>
+        <path d="M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723" fill="#23B2EF"/>
+        <path d="M15.4909 32.2727C24.0462 32.2727 30.9817 25.0482 30.9817 16.1364C30.9817 7.2245 24.0462 0 15.4909 0C6.9355 0 0 7.2245 0 16.1364C0 25.0482 6.9355 32.2727 15.4909 32.2727Z" fill="#23B2EF"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1160.76 23.8361H1168.83L1207.88 116.934H1193.72L1181.42 87.3112H1147.93L1135.63 116.934H1121.84L1160.76 23.8361ZM1164.62 47.001C1164.41 47.511 1164.21 48.0035 1164 48.4785C1164 48.4868 1163.99 48.4952 1163.99 48.5036L1152.9 75.3179H1176.44L1165.37 48.6351C1165.11 48.0689 1164.86 47.5241 1164.62 47.001Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1103.85 24.4333H1116.68V116.934H1103.85V24.4333Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1013.34 24.4417C1021.54 23.8786 1029.83 23.5972 1038.19 23.5972C1052.13 23.5972 1064.01 27.9788 1073.57 36.845C1083.25 45.7524 1087.96 57.8334 1087.96 72.6546C1087.96 80.1182 1086.75 86.8835 1084.23 92.8826C1081.81 98.7626 1078.38 103.606 1073.88 107.291L1073.87 107.3L1073.86 107.31C1064.93 114.508 1053.87 118.009 1040.93 118.009C1032.77 118.009 1023.55 117.565 1013.28 116.682L1010.03 116.403V24.6685L1013.34 24.4417ZM1022.86 36.3236V105.05C1027.52 105.451 1033.53 105.658 1040.93 105.658C1051.5 105.658 1059.59 102.825 1065.56 97.4842C1071.43 92.2305 1074.65 84.1439 1074.65 72.5352C1074.65 61.083 1071.08 52.3263 1064.19 45.8581L1064.18 45.8518L1064.17 45.8455C1057.24 39.2724 1048.66 35.9488 1038.19 35.9488C1032.45 35.9488 1027.35 36.0747 1022.86 36.3236Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M949.691 24.4333H996.444V36.546H962.521V60.8648H993.219V72.858H962.521V104.821H997.758V116.934H949.691V24.4333Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M847.451 23.7166H856.167L883.696 89.1437C883.775 89.3174 883.854 89.4907 883.932 89.6635C884.01 89.5017 884.089 89.3376 884.169 89.1711C884.173 89.1637 884.176 89.1562 884.18 89.1487L914.863 23.7166H923.395L937.487 116.934H924.315L915.086 52.6829L887.125 112.515H879.268L854.89 53.494L845.275 116.934H832.195L847.451 23.7166ZM854.778 38.7136L852.913 34.2799L852.144 38.9783L854.778 38.7136Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M741.609 24.4333H754.439V104.583H793.737V116.934H741.609V24.4333Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M689.276 23.8361H697.342L736.391 116.934H722.237L709.934 87.3112H676.447L664.144 116.934H650.355L689.276 23.8361ZM693.134 47.001C692.928 47.5096 692.722 48.0009 692.517 48.4747C692.513 48.4843 692.508 48.494 692.504 48.5036L681.416 75.3179H704.957L693.881 48.6343C693.621 48.0684 693.372 47.5239 693.134 47.001Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M579.242 24.8012C586.857 24.2402 593.281 23.9555 598.495 23.9555C607.248 23.9555 614.766 26.2403 620.771 31.0575C627.001 35.9721 629.994 42.9619 629.994 51.5124C629.994 57.4291 628.25 62.9361 624.843 67.9577C622.377 71.5906 619.65 74.7105 616.648 77.2808C619.161 80.6986 622.088 84.6044 625.431 88.9996C629.784 94.539 632.523 97.9301 633.725 99.288C638.091 103.927 644.5 106.73 647 106L642 117.5C636.867 117.416 637.813 117.049 634.194 115.43L634.159 115.415L634.124 115.398C630.649 113.752 627.406 111.328 624.38 108.215L624.362 108.196L624.344 108.178C621.538 105.207 614.932 96.5546 604.691 82.5289C599.016 82.5018 593.713 82.3458 588.784 82.0596V116.934H575.955V25.0435L579.242 24.8012ZM588.784 36.4574V70.2608C593.838 70.527 598.587 70.6594 603.034 70.6594C604.952 70.6594 607.794 69.349 611.575 64.9628C615.006 60.9829 616.687 56.468 616.687 51.2735C616.687 46.0259 614.971 42.5632 611.895 40.2559L611.864 40.2329L611.834 40.2093C608.568 37.6479 604.002 36.1876 597.778 36.1876C595.136 36.1876 592.139 36.2768 588.784 36.4574Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M492.945 36.9267C501.461 27.6323 512.423 23 525.538 23C535.494 23 545.539 24.6603 555.661 27.9518L559.034 29.0488L555.313 40.4986L551.991 39.502C542.721 36.721 533.908 35.3515 525.538 35.3515C516.072 35.3515 508.538 38.6953 502.636 45.38C496.653 52.155 493.61 60.4929 493.61 70.624C493.61 80.5379 496.997 88.8331 503.812 95.7209C510.623 102.605 518.83 106.016 528.643 106.016C536.455 106.016 542.926 105.071 548.149 103.29V67.0761H560.978V110.343L559.301 111.384C551.587 116.172 541.123 118.367 528.285 118.367C514.955 118.367 503.538 113.757 494.254 104.559L494.242 104.547C484.966 95.2708 480.303 83.8922 480.303 70.624C480.303 57.3902 484.488 46.0776 492.945 36.9267Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M424.98 24.4333H471.733V36.546H437.81V60.8648H468.508V72.858H437.81V104.821H473.047V116.934H424.98V24.4333Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M346.602 24.4333H417.243V36.546H388.337V116.934H375.508V36.546H346.602V24.4333Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M258.809 23.7166H266.604L323.941 89.8193L323.958 89.8391C324.694 90.7129 325.398 91.5541 326.071 92.3627C326.062 91.5421 326.057 90.7062 326.057 89.855V24.4333H338.887V117.651H331.093L272.709 50.3881C272.707 50.3857 272.705 50.3833 272.703 50.3809C272.315 49.9385 271.939 49.5093 271.576 49.0933L271.638 51.7096V116.934H258.809V23.7166Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M225.182 24.4333H238.011V116.934H225.182V24.4333Z" fill="white"/>
+      </svg>
+    </div>
+    <!-- TEMPLATE: Replace label text -->
+    <div class="hero-label">Document Type</div>
+    <!-- TEMPLATE: Replace title -->
+    <h1>Document Title Here</h1>
+    <!-- TEMPLATE: Replace description -->
+    <p>A brief description of what this document covers. Keep to 1-2 sentences for best visual impact.</p>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+     Replace: section links to match your content
+     ══════════════════════════════════════════ -->
+<nav class="nav-strip">
+  <div class="nav-inner">
+    <a href="#section-1">Section One</a>
+    <a href="#section-2">Section Two</a>
+    <a href="#section-3">Section Three</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1
+     ══════════════════════════════════════════ -->
+<section id="section-1">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Section Title</h2>
+    </div>
+
+    <!-- Example: Basic card -->
+    <div class="card">
+      <h3><span class="icon">&#9889;</span> Card Title</h3>
+      <p>Card content goes here. Use cards to group related information.</p>
+      <ul>
+        <li>Bullet point with sky-blue dot</li>
+        <li>Another point — use <code>inline code</code> for technical references</li>
+      </ul>
+    </div>
+
+    <!-- Example: Callout -->
+    <div class="callout">
+      <strong>Note:</strong> Use callouts for important information that should stand out from the surrounding content.
+    </div>
+
+    <!-- Example: Table -->
+    <div class="card">
+      <h3><span class="icon">&#128203;</span> Table Example</h3>
+      <table class="im-table">
+        <thead>
+          <tr>
+            <th>Column A</th>
+            <th>Column B</th>
+            <th>Column C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Data</td><td><code>value</code></td><td>Description</td></tr>
+          <tr><td>Data</td><td><code>value</code></td><td>Description</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — Steps example
+     ══════════════════════════════════════════ -->
+<section id="section-2">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Step-by-Step Process</h2>
+    </div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>First Step</h3>
+      <p>Description of what to do in this step.</p>
+      <div class="auto-list">
+        <p>What happens automatically</p>
+        <ul>
+          <li>Automated action one</li>
+          <li>Automated action two</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Second Step <span class="cond">If applicable</span></h3>
+      <p>Description with a conditional label for optional steps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — Status cards example
+     ══════════════════════════════════════════ -->
+<section id="section-3">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Status Options</h2>
+    </div>
+
+    <div class="status-grid">
+      <div class="status-card pause">
+        <h4>Option A <span class="status-badge paused">warning</span></h4>
+        <p>Description of this option.</p>
+      </div>
+      <div class="status-card reactivate">
+        <h4>Option B <span class="status-badge active">success</span></h4>
+        <p>Description of this option.</p>
+      </div>
+      <div class="status-card offboard">
+        <h4>Option C <span class="status-badge archived">danger</span></h4>
+        <p>Description of this option.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+     Replace: "Last updated" date
+     ══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <!-- Integral Media logo (subdued on dark bg) -->
+      <svg viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144" fill="#23B2EF"/>
+        <path d="M165.181 0H134.199V142H165.181V0Z" fill="#23B2EF"/>
+        <path d="M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723" fill="#23B2EF"/>
+        <path d="M15.4909 32.2727C24.0462 32.2727 30.9817 25.0482 30.9817 16.1364C30.9817 7.2245 24.0462 0 15.4909 0C6.9355 0 0 7.2245 0 16.1364C0 25.0482 6.9355 32.2727 15.4909 32.2727Z" fill="#23B2EF"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1160.76 23.8361H1168.83L1207.88 116.934H1193.72L1181.42 87.3112H1147.93L1135.63 116.934H1121.84L1160.76 23.8361ZM1164.62 47.001C1164.41 47.511 1164.21 48.0035 1164 48.4785C1164 48.4868 1163.99 48.4952 1163.99 48.5036L1152.9 75.3179H1176.44L1165.37 48.6351C1165.11 48.0689 1164.86 47.5241 1164.62 47.001Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1103.85 24.4333H1116.68V116.934H1103.85V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1013.34 24.4417C1021.54 23.8786 1029.83 23.5972 1038.19 23.5972C1052.13 23.5972 1064.01 27.9788 1073.57 36.845C1083.25 45.7524 1087.96 57.8334 1087.96 72.6546C1087.96 80.1182 1086.75 86.8835 1084.23 92.8826C1081.81 98.7626 1078.38 103.606 1073.88 107.291L1073.87 107.3L1073.86 107.31C1064.93 114.508 1053.87 118.009 1040.93 118.009C1032.77 118.009 1023.55 117.565 1013.28 116.682L1010.03 116.403V24.6685L1013.34 24.4417ZM1022.86 36.3236V105.05C1027.52 105.451 1033.53 105.658 1040.93 105.658C1051.5 105.658 1059.59 102.825 1065.56 97.4842C1071.43 92.2305 1074.65 84.1439 1074.65 72.5352C1074.65 61.083 1071.08 52.3263 1064.19 45.8581L1064.18 45.8518L1064.17 45.8455C1057.24 39.2724 1048.66 35.9488 1038.19 35.9488C1032.45 35.9488 1027.35 36.0747 1022.86 36.3236Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M949.691 24.4333H996.444V36.546H962.521V60.8648H993.219V72.858H962.521V104.821H997.758V116.934H949.691V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M847.451 23.7166H856.167L883.696 89.1437C883.775 89.3174 883.854 89.4907 883.932 89.6635C884.01 89.5017 884.089 89.3376 884.169 89.1711C884.173 89.1637 884.176 89.1562 884.18 89.1487L914.863 23.7166H923.395L937.487 116.934H924.315L915.086 52.6829L887.125 112.515H879.268L854.89 53.494L845.275 116.934H832.195L847.451 23.7166ZM854.778 38.7136L852.913 34.2799L852.144 38.9783L854.778 38.7136Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M741.609 24.4333H754.439V104.583H793.737V116.934H741.609V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M689.276 23.8361H697.342L736.391 116.934H722.237L709.934 87.3112H676.447L664.144 116.934H650.355L689.276 23.8361ZM693.134 47.001C692.928 47.5096 692.722 48.0009 692.517 48.4747C692.513 48.4843 692.508 48.494 692.504 48.5036L681.416 75.3179H704.957L693.881 48.6343C693.621 48.0684 693.372 47.5239 693.134 47.001Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M579.242 24.8012C586.857 24.2402 593.281 23.9555 598.495 23.9555C607.248 23.9555 614.766 26.2403 620.771 31.0575C627.001 35.9721 629.994 42.9619 629.994 51.5124C629.994 57.4291 628.25 62.9361 624.843 67.9577C622.377 71.5906 619.65 74.7105 616.648 77.2808C619.161 80.6986 622.088 84.6044 625.431 88.9996C629.784 94.539 632.523 97.9301 633.725 99.288C638.091 103.927 644.5 106.73 647 106L642 117.5C636.867 117.416 637.813 117.049 634.194 115.43L634.159 115.415L634.124 115.398C630.649 113.752 627.406 111.328 624.38 108.215L624.362 108.196L624.344 108.178C621.538 105.207 614.932 96.5546 604.691 82.5289C599.016 82.5018 593.713 82.3458 588.784 82.0596V116.934H575.955V25.0435L579.242 24.8012ZM588.784 36.4574V70.2608C593.838 70.527 598.587 70.6594 603.034 70.6594C604.952 70.6594 607.794 69.349 611.575 64.9628C615.006 60.9829 616.687 56.468 616.687 51.2735C616.687 46.0259 614.971 42.5632 611.895 40.2559L611.864 40.2329L611.834 40.2093C608.568 37.6479 604.002 36.1876 597.778 36.1876C595.136 36.1876 592.139 36.2768 588.784 36.4574Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M492.945 36.9267C501.461 27.6323 512.423 23 525.538 23C535.494 23 545.539 24.6603 555.661 27.9518L559.034 29.0488L555.313 40.4986L551.991 39.502C542.721 36.721 533.908 35.3515 525.538 35.3515C516.072 35.3515 508.538 38.6953 502.636 45.38C496.653 52.155 493.61 60.4929 493.61 70.624C493.61 80.5379 496.997 88.8331 503.812 95.7209C510.623 102.605 518.83 106.016 528.643 106.016C536.455 106.016 542.926 105.071 548.149 103.29V67.0761H560.978V110.343L559.301 111.384C551.587 116.172 541.123 118.367 528.285 118.367C514.955 118.367 503.538 113.757 494.254 104.559L494.242 104.547C484.966 95.2708 480.303 83.8922 480.303 70.624C480.303 57.3902 484.488 46.0776 492.945 36.9267Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M424.98 24.4333H471.733V36.546H437.81V60.8648H468.508V72.858H437.81V104.821H473.047V116.934H424.98V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M346.602 24.4333H417.243V36.546H388.337V116.934H375.508V36.546H346.602V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M258.809 23.7166H266.604L323.941 89.8193L323.958 89.8391C324.694 90.7129 325.398 91.5541 326.071 92.3627C326.062 91.5421 326.057 90.7062 326.057 89.855V24.4333H338.887V117.651H331.093L272.709 50.3881C272.707 50.3857 272.705 50.3833 272.703 50.3809C272.315 49.9385 271.939 49.5093 271.576 49.0933L271.638 51.7096V116.934H258.809V23.7166Z" fill="rgba(255,255,255,0.7)"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M225.182 24.4333H238.011V116.934H225.182V24.4333Z" fill="rgba(255,255,255,0.7)"/>
+      </svg>
+    </div>
+    <!-- TEMPLATE: Update date -->
+    <p>Last updated · March 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

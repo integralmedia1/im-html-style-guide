@@ -1,27 +1,22 @@
 ---
 name: im-html-style-guide
-description: Create Integral Media branded HTML documents, reports, and presentations following the official brand style guide
-triggers:
-  - create HTML
-  - HTML report
-  - HTML document
-  - branded document
-  - IM report
-  - IM presentation
-  - IM document
-  - Integral Media report
-  - Integral Media document
-  - branded HTML
-  - style guide
+description: >
+  This skill should be used when the user asks to create an HTML document,
+  report, presentation, or proposal branded to Integral Media (IM). Triggers
+  include: "create HTML report", "branded document", "IM report", "IM
+  presentation", "Integral Media document", "make a branded HTML page",
+  "quarterly review document", "client report HTML", "SEO report for
+  [client]", "create a styled HTML page", "HTML with IM branding".
+version: 1.0.0
 ---
 
 # Integral Media — HTML Document Style Guide
 
-You are creating an HTML document branded to Integral Media. Follow these rules exactly.
+To create an Integral Media branded HTML document, follow these rules.
 
 ## Getting Started
 
-1. Read the template file from the plugin's assets directory: `assets/im-document-template.html`
+1. Read the template file: `${CLAUDE_PLUGIN_ROOT}/assets/im-document-template.html`
 2. Duplicate it as your starting point
 3. Replace the `<!-- TEMPLATE: Replace -->` markers with actual content
 4. All documents must be **self-contained** — inline CSS, inline SVG logos, no external stylesheets
@@ -32,7 +27,7 @@ You are creating an HTML document branded to Integral Media. Follow these rules 
 
 | Name | Hex | CSS Variable | Usage |
 |------|-----|-------------|-------|
-| **Sky Blue** | `#27C1F4` | `--sky` | Primary accent, icon mark, links, highlights, timeline dots |
+| **Sky Blue** | `#27C1F4` | `--sky` | Primary accent, links, highlights, timeline dots. Note: logo icon mark uses `#23B2EF` (original brand file shade) |
 | **Deep Navy** | `#002F6C` | `--navy` | Hero/footer backgrounds, section titles, headings, step badges |
 | **Charcoal** | `#333740` | `--charcoal` | Body text |
 | **Cool Grey** | `#DCDDEB` | `--cool-grey` | Borders, dividers, tab bars |
@@ -55,6 +50,7 @@ These are utility colours that complement the brand:
 | Amber | `#f59e0b` | `--amber` | Warning/conditional states |
 | Amber Muted | `#fef3c7` | `--amber-muted` | Warning badges |
 | Red | `#ef4444` | `--red` | Error/danger states |
+| Warm Gray | `#94a3b8` | `--warm-gray` | Muted decorative text |
 | Red Muted | `#fee2e2` | `--red-muted` | Danger badges |
 
 ---

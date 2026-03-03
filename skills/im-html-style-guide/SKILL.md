@@ -7,7 +7,7 @@ description: >
   presentation", "Integral Media document", "make a branded HTML page",
   "quarterly review document", "client report HTML", "SEO report for
   [client]", "create a styled HTML page", "HTML with IM branding".
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Integral Media — HTML Document Style Guide

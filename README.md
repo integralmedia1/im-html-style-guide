@@ -4,24 +4,28 @@ Claude Code plugin that teaches Claude the Integral Media brand rules — so whe
 
 ## Install
 
-From your terminal, run:
+> **Important:** These commands are run from your **regular terminal** (bash/zsh), NOT from inside Claude Code's `❯` prompt. If Claude Code is open, exit it first with `/exit` or Ctrl+C.
 
 ```bash
 claude plugin marketplace add integralmedia1/im-html-style-guide
 claude plugin install im-html-style-guide
 ```
 
-Then restart Claude Code to load the plugin.
+You should see two green ticks. Then open Claude Code as normal — the plugin loads automatically.
 
-**To update** (pull latest changes):
+## Update
+
+When the style guide is updated, pull the latest from your **terminal**:
 
 ```bash
 claude plugin marketplace update im-html-style-guide
 ```
 
+Then restart Claude Code.
+
 ## Usage
 
-Just ask Claude to make an HTML document. Any of these work:
+Once installed, just ask Claude to make an HTML document inside Claude Code. Any of these work:
 
 - "Create an HTML report for [client name]"
 - "Make a branded document about our SEO results"
@@ -36,9 +40,11 @@ You can also invoke the skill directly with `/im-html-style-guide`.
 | Component | What it does |
 |-----------|-------------|
 | **Style guide** | Colours, typography, logo rules, do's and don'ts |
-| **HTML template** | 888-line ready-to-go template with all CSS inline |
+| **HTML template** | Ready-to-go template with all CSS inline |
 | **Logo variants** | SVG (colour, black, white, dark bg) + PNG brandmarks |
 | **Component library** | Cards, callouts, steps, timelines, status grids, tables, tabs, diagrams |
+| **Lucide icons** | 24 pre-built inline SVG icons (no emoji) |
+| **Mobile responsive** | 768px + 480px breakpoints, tested on mobile devices |
 | **White-label rules** | How to strip IM branding for Higher Ranking / Purpose Digital |
 
 ## Brand quick reference
@@ -51,9 +57,12 @@ You can also invoke the skill directly with `/im-html-style-guide`.
 | **Body font** | Inter |
 | **Mono font** | JetBrains Mono |
 | **Max width** | 960px |
+| **Icons** | Lucide inline SVGs (never emoji) |
 | **Key rule** | Documents must be self-contained — inline CSS, inline SVG logos, no external stylesheets |
 
 ## Uninstall
+
+From your **terminal** (not inside Claude Code):
 
 ```bash
 claude plugin uninstall im-html-style-guide

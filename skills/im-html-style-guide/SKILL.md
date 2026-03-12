@@ -7,7 +7,7 @@ description: >
   presentation", "Integral Media document", "make a branded HTML page",
   "quarterly review document", "client report HTML", "SEO report for
   [client]", "create a styled HTML page", "HTML with IM branding".
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Integral Media — HTML Document Style Guide
@@ -267,16 +267,79 @@ Amber muted background, monospace uppercase, 10.5px.
 
 ---
 
-## Responsive Breakpoints
+## Mobile Optimisation (MANDATORY)
 
-Single breakpoint at `768px`:
-- Hero h1: 42px → 28px
-- Container padding: 40px → 20px
-- Section number: 56px → 40px
-- Section title: 28px → 22px
-- Step left padding: 88px → 72px
-- Status grid: 3 columns → 1 column
-- Nav links: smaller font + tighter padding
+**Every HTML document MUST render correctly on mobile devices.** This is non-negotiable — clients view these on phones and tablets.
+
+### Required Meta Tag
+
+Always include in `<head>`:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+### Primary Breakpoint: 768px
+
+All components must adapt at `@media (max-width: 768px)`. The template includes these rules — preserve and extend them for any custom components you add.
+
+### Core Mobile Rules
+
+**Layout:**
+- Container padding: `40px` → `20px`
+- Cards padding: `32px` → `20px`
+- Section padding-top: `70px` → `48px`
+
+**Typography:**
+- Hero h1: `42px` → `28px`
+- Section number: `56px` → `40px`
+- Section title: `28px` → `22px`
+
+**Navigation:**
+- Nav strip: `overflow-x: auto` with `-webkit-overflow-scrolling: touch`
+- `flex-wrap: nowrap` so links scroll horizontally rather than stacking awkwardly
+- Hide scrollbar visually: `.nav-inner::-webkit-scrollbar { display: none; }`
+
+**Grids:**
+- Status grid: `3 columns` → `1 column`
+- Any multi-column grid: collapse to single column at 768px
+
+**Steps:**
+- Left padding: `88px` → `20px`
+- Step number: reposition to `static` flow above the title (not absolute-left on small screens)
+
+**Tables:**
+- Wrap in a `div` with `overflow-x: auto` so wide tables scroll horizontally
+- Minimum touch target: `44px` height for any interactive table rows
+
+**Images & SVGs:**
+- `max-width: 100%; height: auto;` on all images
+- Hero logo SVG: reduce height to `22px`
+
+**Touch Targets:**
+- All interactive elements (links, buttons): minimum `44px x 44px` hit area
+- Nav links: `padding: 14px 12px` minimum
+
+**Architecture Diagrams:**
+- `overflow-x: auto` already set — also add `font-size: 11px` on mobile
+- Consider `white-space: pre-wrap` for very long lines if content allows
+
+### Secondary Breakpoint: 480px (optional)
+
+For extra-small screens, consider:
+- Hero h1: `28px` → `24px`
+- Section header: stack number above title (`flex-direction: column; align-items: flex-start`)
+- Card padding: `20px` → `16px`
+- Tab bar tabs: `font-size: 10px; padding: 5px 10px`
+
+### Testing Checklist
+
+Before finalising any HTML document, mentally verify:
+- [ ] No horizontal scroll on mobile (except intentional: tables, code blocks, tab bars)
+- [ ] All text is readable without pinch-zooming (minimum 14px body text)
+- [ ] Touch targets are large enough (44px minimum)
+- [ ] Grids collapse to single column
+- [ ] Navigation is usable (scrollable or wraps cleanly)
+- [ ] Images/SVGs don't overflow their containers
 
 ---
 

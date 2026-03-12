@@ -682,19 +682,86 @@
   }
 
   /* ══════════════════════════════════════════
-     RESPONSIVE
+     RESPONSIVE — 768px
      ══════════════════════════════════════════ */
   @media (max-width: 768px) {
+    /* Layout */
+    .container { padding: 0 20px; }
+    .hero-inner { padding: 0 20px; }
+    section { padding: 48px 0 20px; }
+
+    /* Hero */
     .hero { padding: 40px 0 36px; }
     .hero h1 { font-size: 28px; }
-    .container { padding: 0 20px; }
+    .hero-logo svg { height: 22px; }
+
+    /* Navigation — horizontal scroll */
+    .nav-inner {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner a { font-size: 10px; padding: 14px 12px; white-space: nowrap; }
+
+    /* Section headers */
     .section-number { font-size: 40px; }
     .section-title { font-size: 22px; }
-    .step { padding-left: 72px; }
-    .step-num { left: 20px; top: 28px; width: 34px; height: 34px; font-size: 17px; }
+
+    /* Cards */
+    .card { padding: 20px; }
+
+    /* Steps — reflow number above title */
+    .step { padding: 20px; padding-top: 24px; }
+    .step-num {
+      position: static;
+      margin-bottom: 12px;
+      width: 34px;
+      height: 34px;
+      font-size: 17px;
+    }
+
+    /* Grids */
     .status-grid { grid-template-columns: 1fr; }
-    .nav-inner a { font-size: 10px; padding: 14px 12px; }
+
+    /* Tables — horizontal scroll */
+    .card:has(.im-table) { padding: 20px 0; }
+    .im-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Architecture diagrams */
+    .arch-diagram { padding: 20px; }
+    .arch-diagram pre { font-size: 11px; }
+
+    /* Tab bar */
+    .tab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tab-bar::-webkit-scrollbar { display: none; }
+
+    /* Timeline */
+    .timeline { padding-left: 36px; }
+    .timeline-dot { left: -26px; width: 12px; height: 12px; }
   }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE — 480px (extra-small)
+     ══════════════════════════════════════════ */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 24px; }
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .card { padding: 16px; }
+    .status-card { padding: 16px; }
+    .step { padding: 16px; }
+    .tab-bar .tab { font-size: 10px; padding: 5px 10px; }
+  }
+
+  /* ══════════════════════════════════════════
+     GLOBAL MOBILE SAFETY
+     ══════════════════════════════════════════ */
+  img, svg { max-width: 100%; height: auto; }
 </style>
 </head>
 <body>

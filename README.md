@@ -58,6 +58,7 @@ You can also invoke the skill directly with `/im-html-style-guide`.
 | **Lucide icons** | 24 pre-built inline SVG icons (no emoji) |
 | **Mobile responsive** | 768px + 480px breakpoints, tested on mobile devices |
 | **White-label rules** | How to strip IM branding for Higher Ranking / Purpose Digital |
+| **Google Sheets guide** | Colour palette (with RGB 0-1 for API), element specs, WCAG AA, batchUpdate request order |
 
 ## Brand quick reference
 

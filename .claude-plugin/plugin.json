@@ -1,9 +1,9 @@
 {
   "name": "im-html-style-guide",
-  "description": "Integral Media brand style guide for creating HTML documents, reports, and presentations",
+  "description": "Integral Media brand style guide for HTML documents, reports, presentations, and Google Sheets formatting",
   "author": {
     "name": "Integral Media",
     "email": "dev@integralmedia.com.au"
   },
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

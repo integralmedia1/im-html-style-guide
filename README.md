@@ -13,9 +13,21 @@ claude plugin install im-html-style-guide
 
 You should see two green ticks. Then open Claude Code as normal — the plugin loads automatically.
 
-## Update
+### Enable auto-updates (recommended)
 
-When the style guide is updated, pull the latest from your **terminal**:
+By default, third-party plugins don't auto-update. To enable it so you always get the latest changes on startup:
+
+1. Open Claude Code
+2. Type `/plugin` to open the plugin manager
+3. Go to the **Marketplaces** tab
+4. Select `im-html-style-guide`
+5. Enable **auto-update**
+
+After that, the plugin refreshes automatically every time you start Claude Code.
+
+## Manual update
+
+If you haven't enabled auto-updates, pull the latest from your **terminal**:
 
 ```bash
 claude plugin marketplace update im-html-style-guide

@@ -737,7 +737,11 @@
 
     /* Tables — horizontal scroll */
     .card:has(.im-table) { padding: 20px 0; }
+    .card:has(.im-table) h3 { padding: 0 16px; }
+    .card:has(.im-table) > p { padding: 0 16px; }
     .im-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .im-table th { padding: 8px 10px; font-size: 9.5px; letter-spacing: 0.5px; }
+    .im-table td { padding: 8px 10px; font-size: 12.5px; }
 
     /* Architecture diagrams */
     .arch-diagram { padding: 20px; }

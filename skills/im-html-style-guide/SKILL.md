@@ -359,6 +359,8 @@ All components must adapt at `@media (max-width: 768px)`. The template includes 
 
 **Tables:**
 - Wrap in a `div` with `overflow-x: auto` so wide tables scroll horizontally
+- On mobile: reduce cell padding to `8px 10px`, header font to `9.5px`, body font to `12.5px`
+- Cards containing tables: `padding: 20px 0` with `h3, p` getting `padding: 0 16px`
 - Minimum touch target: `44px` height for any interactive table rows
 
 **Images & SVGs:**

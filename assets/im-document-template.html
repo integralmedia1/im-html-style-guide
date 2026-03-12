@@ -9,6 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 166 142'><path d='M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144' fill='%2323B2EF'/><path d='M165.181 0H134.199V142H165.181V0Z' fill='%2323B2EF'/><path d='M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723' fill='%2323B2EF'/><path d='M15.4909 32.2727C24.0462 32.2727 30.9817 25.0482 30.9817 16.1364C30.9817 7.2245 24.0462 0 15.4909 0C6.9355 0 0 7.2245 0 16.1364C0 25.0482 6.9355 32.2727 15.4909 32.2727Z' fill='%2323B2EF'/></svg>">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  /* Lucide Icons — inline SVG icons, no external dependency */
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -249,11 +250,20 @@
     height: 28px;
     background: var(--navy);
     border-radius: 6px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
     flex-shrink: 0;
+  }
+
+  .card h3 .icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--white);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
 
   .card p, .card li {
@@ -827,7 +837,7 @@
 
     <!-- Example: Basic card -->
     <div class="card">
-      <h3><span class="icon">&#9889;</span> Card Title</h3>
+      <h3><span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Card Title</h3>
       <p>Card content goes here. Use cards to group related information.</p>
       <ul>
         <li>Bullet point with sky-blue dot</li>
@@ -842,7 +852,7 @@
 
     <!-- Example: Table -->
     <div class="card">
-      <h3><span class="icon">&#128203;</span> Table Example</h3>
+      <h3><span class="icon"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span> Table Example</h3>
       <table class="im-table">
         <thead>
           <tr>

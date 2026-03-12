@@ -180,6 +180,38 @@ Use this inline data URI in the `<head>`:
 
 ## Component Reference
 
+### Icons (Lucide — inline SVG only)
+
+**NEVER use emoji HTML entities** (e.g. `&#9889;`, `&#128203;`) or Unicode emoji in documents. Use [Lucide](https://lucide.dev) icons as inline SVGs instead.
+
+**How to use:** Place the SVG directly inside the `.icon` span. The CSS handles sizing and colour:
+
+```html
+<span class="icon">
+  <svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+</span>
+```
+
+**Rules:**
+- Always use `viewBox="0 0 24 24"` (Lucide's standard viewBox)
+- Do NOT set `width`, `height`, `stroke`, or `fill` on the `<svg>` — the CSS handles it (white stroke on navy background)
+- Pick icons that clearly communicate the card's purpose — browse [lucide.dev/icons](https://lucide.dev/icons) for the full library
+- Copy ONLY the inner `<path>`, `<rect>`, `<circle>`, `<line>`, `<polyline>` elements from Lucide — strip any wrapper markup
+
+**Common icons for reference:**
+
+| Purpose | Lucide name | SVG path |
+|---------|------------|----------|
+| Info / overview | `info` | `<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>` |
+| Settings / config | `settings` | `<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>` |
+| Checklist / tasks | `clipboard-list` | `<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>` |
+| Lightning / action | `zap` | `<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>` |
+| Chart / data | `bar-chart-3` | `<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>` |
+| Security / lock | `shield-check` | `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>` |
+| Link / connection | `link` | `<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>` |
+| Calendar / schedule | `calendar` | `<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>` |
+| Users / team | `users` | `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>` |
+
 ### Callout Box
 
 ```html
@@ -356,6 +388,7 @@ Before finalising any HTML document, mentally verify:
 
 ### Don't
 
+- **Use emoji or HTML entities for icons** — always use Lucide inline SVGs
 - Use Julius Sans One for body text
 - Bold Julius Sans One (`font-weight: 400` only)
 - Add wide letter-spacing to Julius Sans One (tighten it to match the logo)

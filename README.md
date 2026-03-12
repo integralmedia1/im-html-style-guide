@@ -4,23 +4,19 @@ Claude Code plugin that teaches Claude the Integral Media brand rules — so whe
 
 ## Install
 
-Paste these into Claude Code (the `❯` prompt), one at a time:
+From your terminal, run:
 
-```
-/plugin marketplace add https://github.com/integralmedia1/im-html-style-guide.git
-```
-
-```
-/plugin install im-html-style-guide
+```bash
+claude plugin marketplace add integralmedia1/im-html-style-guide
+claude plugin install im-html-style-guide
 ```
 
 Then restart Claude Code to load the plugin.
 
-**From your terminal** (outside Claude Code), the equivalent is:
+**To update** (pull latest changes):
 
 ```bash
-claude plugin marketplace add https://github.com/integralmedia1/im-html-style-guide.git
-claude plugin install im-html-style-guide
+claude plugin marketplace update im-html-style-guide
 ```
 
 ## Usage
@@ -59,7 +55,7 @@ You can also invoke the skill directly with `/im-html-style-guide`.
 
 ## Uninstall
 
-```
-/plugin uninstall im-html-style-guide
-/plugin marketplace remove im-html-style-guide
+```bash
+claude plugin uninstall im-html-style-guide
+claude plugin marketplace remove im-html-style-guide
 ```

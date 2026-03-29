@@ -9,7 +9,7 @@ description: >
   "client report HTML", "SEO report for [client]", "create a styled HTML
   page", "HTML with IM branding", "format this sheet", "style the
   spreadsheet", "branded Google Sheet", "IM sheet formatting".
-version: 1.3.0
+version: 1.4.0
 ---
 
 # Integral Media — HTML Document Style Guide
@@ -22,6 +22,33 @@ To create an Integral Media branded HTML document, follow these rules.
 2. Duplicate it as your starting point
 3. Replace the `<!-- TEMPLATE: Replace -->` markers with actual content
 4. All documents must be **self-contained** — inline CSS, inline SVG logos, no external stylesheets
+
+---
+
+## SEO & Meta Tags
+
+Any public-facing IM document must include Open Graph and Twitter Card meta tags in `<head>`:
+
+```html
+<!-- TEMPLATE: Replace all content="" values -->
+<meta name="description" content="Page description for search engines">
+<meta property="og:title" content="Page Title — Integral Media">
+<meta property="og:description" content="Description for social sharing (1-2 sentences)">
+<meta property="og:image" content="https://example.com/og.png">
+<meta property="og:url" content="https://example.com/page">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Page Title — Integral Media">
+<meta name="twitter:description" content="Description for Twitter sharing">
+<meta name="twitter:image" content="https://example.com/og.png">
+<link rel="canonical" href="https://example.com/page">
+```
+
+**Rules:**
+- `og:image` should be 1200x630px for best rendering across platforms
+- `og:description` and `twitter:description` can differ (Twitter has tighter character limits)
+- Canonical URL must be the production URL, not a staging/preview URL
+- Internal documents (not deployed publicly) can skip this section
 
 ---
 
@@ -67,8 +94,18 @@ These are utility colours that complement the brand:
 --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 ```
 
-### Google Fonts Import
+### Font Loading (recommended)
 
+Use `<link rel="preload">` + `<link rel="stylesheet">` in `<head>`, **outside** the `<style>` block:
+
+```html
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+```
+
+**Why not `@import`?** `@import` inside `<style>` blocks rendering — the browser must download and parse the imported stylesheet before rendering any content. `<link>` loads fonts in parallel with the page.
+
+**Fallback only** (if you must keep everything inside `<style>`):
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 ```
@@ -177,6 +214,80 @@ Use this inline data URI in the `<head>`:
 - Background: `--navy`
 - Logo at reduced opacity (0.7)
 - "Last updated" text: monospace, 11px, white at 40% opacity
+
+---
+
+## Accessibility Baseline
+
+Every IM document must include these accessibility features:
+
+### Language
+
+```html
+<html lang="en-AU">
+```
+
+Use `en-AU` for Australian documents, not just `en`.
+
+### Skip Link
+
+Add before the hero, hidden until focused:
+
+```html
+<a href="#section-1" class="skip-link">Skip to content</a>
+```
+
+```css
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 16px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 0 0 6px 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-decoration: none;
+  z-index: 1000;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+```
+
+### Decorative Elements
+
+Add `aria-hidden="true"` to purely visual elements so screen readers skip them:
+
+```html
+<span class="section-number" aria-hidden="true">01</span>
+<span class="icon" aria-hidden="true"><svg>...</svg></span>
+```
+
+### SVG Logos
+
+Add `role="img"` and a `<title>` to logo SVGs:
+
+```html
+<svg role="img" viewBox="0 0 1208 142" ...>
+  <title>Integral Media</title>
+  <!-- paths -->
+</svg>
+```
+
+### Focus-Visible States
+
+Add visible focus outlines on all interactive elements (nav links, buttons, CTAs):
+
+```css
+.nav-inner a:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+```
+
+Use `focus-visible` (not `focus`) so outlines only appear on keyboard navigation, not mouse clicks.
 
 ---
 
@@ -317,6 +428,79 @@ code {
 
 Amber muted background, monospace uppercase, 10.5px.
 
+### Pullquote
+
+Large-format quote with optional attribution, for editorial/press content:
+
+```html
+<div class="pullquote">
+  <blockquote>"Quote text here."</blockquote>
+  <p class="attribution">— Speaker Name, Title</p>
+</div>
+```
+
+Sky-muted background, 3px navy left border, rounded right corners. Attribution in monospace uppercase.
+
+### Stats Bar
+
+Horizontal grid of key numbers with labels:
+
+```html
+<div class="stats-bar">
+  <div class="stat"><span class="stat-value">358</span><span class="stat-label">Occupations</span></div>
+  <div class="stat"><span class="stat-value">13.9M</span><span class="stat-label">Workers</span></div>
+</div>
+```
+
+4-column grid (2-column on mobile). Values in Julius Sans One, labels in monospace uppercase.
+
+### Release Banner
+
+Announcement bar for press releases:
+
+```html
+<div class="release-banner">For Immediate Release — 23 March 2026</div>
+```
+
+Navy background, sky text, monospace uppercase, centred.
+
+### CTA Bar
+
+Call-to-action strip with left text and right button:
+
+```html
+<div class="cta-bar">
+  <p>Want to explore the data?</p>
+  <a href="https://example.com">Visit the interactive map</a>
+</div>
+```
+
+Navy background, flex row (stacks on mobile). Button in sky with navy text.
+
+### Media Contact Card
+
+Structured contact block for press materials:
+
+```html
+<div class="media-contact">
+  <div>
+    <h3>Media Contact</h3>
+    <div class="contact-item">
+      <span class="contact-label">Name</span>
+      <span>Contact Person</span>
+    </div>
+  </div>
+  <div>
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <a href="mailto:contact@example.com">contact@example.com</a>
+    </div>
+  </div>
+</div>
+```
+
+Navy background, 2-column grid (1 column on mobile). Sky labels, white text, underline links.
+
 ---
 
 ## Mobile Optimisation (MANDATORY)
@@ -397,6 +581,23 @@ Before finalising any HTML document, mentally verify:
 
 ---
 
+## Print Styles
+
+Add a `@media print` block at the end of the CSS:
+
+```css
+@media print {
+  .nav-strip, .release-banner { display: none; }
+  .hero { padding: 30px 0; }
+  section { break-inside: avoid; }
+  .card { break-inside: avoid; box-shadow: none; border: 1px solid var(--cool-grey); }
+}
+```
+
+Hide navigation and banners, prevent page breaks inside cards, remove box shadows.
+
+---
+
 ## Do's and Don'ts
 
 ### Do
@@ -407,6 +608,10 @@ Before finalising any HTML document, mentally verify:
 - Apply `text-transform: uppercase` and tight letter-spacing on Julius Sans One
 - Use the extended colour palette for status/semantic colours
 - Include the favicon data URI
+- Use `lang="en-AU"` for Australian documents
+- Add `aria-hidden="true"` on decorative section numbers and icon spans
+- Include OG meta tags for any public-facing page
+- Use font preload (`<link>`) instead of `@import` for fonts
 
 ### Don't
 

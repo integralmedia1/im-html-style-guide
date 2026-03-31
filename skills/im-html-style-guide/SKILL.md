@@ -8,8 +8,10 @@ description: >
   document", "make a branded HTML page", "quarterly review document",
   "client report HTML", "SEO report for [client]", "create a styled HTML
   page", "HTML with IM branding", "format this sheet", "style the
-  spreadsheet", "branded Google Sheet", "IM sheet formatting".
-version: 1.4.0
+  spreadsheet", "branded Google Sheet", "IM sheet formatting",
+  "email signature", "create signature", "new starter signature",
+  "Gmail signature", "team signature".
+version: 1.5.0
 ---
 
 # Integral Media — HTML Document Style Guide
@@ -633,6 +635,211 @@ If creating a document for a **white-label partner** (Higher Ranking, Purpose Di
 - The navy/sky colour palette is safe to use (it's generic enough)
 - Replace the hero label and footer with partner-appropriate text
 - Do NOT include any IM email addresses, names, or references
+
+---
+
+# Integral Media — Email Signature Style Guide
+
+Standard HTML email signature for all Integral Media team members. Gmail-compatible table-based layout — no external stylesheets, no JavaScript.
+
+---
+
+## Signature Layout
+
+Two-column table layout with a vertical accent divider:
+
+```
+┌──────────────┬───────────────────────────┐
+│              │  Full Name                │
+│  Brandmark   │  Job Title                │
+│  (80px)      │                           │
+│              │  M  0400 000 000          │
+│  INTEGRAL    │  E  name@integralmedia... │
+│  MEDIA       │  W  integralmedia.com.au  │
+│              │                           │
+│              │  605/10 Yarra Street...   │
+└──────────────┴───────────────────────────┘
+        ↑ 2px Sky Blue (#27C1F4) border
+```
+
+- **Max width:** 520px
+- **Left column:** Brandmark image (80px wide, centred) + "INTEGRAL MEDIA" wordmark text below
+- **Divider:** 2px solid `#27C1F4` (right border on left cell)
+- **Right column:** Name, title, contact details, address
+- **Cell padding:** 24px either side of divider
+
+---
+
+## Typography
+
+| Element | Font | Size | Weight | Colour |
+|---------|------|------|--------|--------|
+| Full name | Inter / system fallback | 17px | Bold (700) | Navy `#002F6C` |
+| Job title | Inter / system fallback | 13px | 400 | `#6B7280` |
+| Contact labels (M, E, W) | Inter / system fallback | 13px | 400 | `#6B7280` |
+| Contact values | Inter / system fallback | 13px | 400 | Sky `#27C1F4` (linked) |
+| Address | Inter / system fallback | 11px | 400 | `#9CA3AF` |
+| "INTEGRAL MEDIA" wordmark | Julius Sans One / Arial Black fallback | 16px | Bold | Navy `#002F6C` |
+
+### Font Stack
+
+```css
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+```
+
+### Wordmark Text Styling
+
+The "INTEGRAL" and "MEDIA" text below the brandmark uses special rendering to match the logo weight:
+
+```css
+font-family: 'Julius Sans One', 'Arial Black', sans-serif;
+font-size: 16px;
+font-weight: bold;
+color: #002F6C;
+letter-spacing: 0.05px;
+-webkit-text-stroke: 0.5px #002F6C;
+text-shadow: 0 0 1px #002F6C, 0 0 1px #002F6C;
+```
+
+---
+
+## Colours
+
+| Element | Value |
+|---------|-------|
+| Name | `#002F6C` (navy) |
+| Title | `#6B7280` (grey) |
+| Contact labels | `#6B7280` (grey) |
+| Links (phone, email, website) | `#27C1F4` (sky) — `text-decoration: none` |
+| Address | `#9CA3AF` (light grey) |
+| Vertical divider | `#27C1F4` (sky), 2px solid |
+| Body text | `#333740` (charcoal) — line-height: 1.7 |
+
+---
+
+## Logo / Brandmark
+
+- **Image:** `https://reports.integralmedia.com.au/logos/current/png/brandmark/im_brandmark_colour.png`
+- **Width:** 80px
+- **Display:** Block, centred in left cell with 8px bottom margin
+- **Alt text:** "IM"
+
+> **Note:** Unlike HTML documents (which use inline SVG), email signatures use an externally hosted PNG because Gmail strips SVG from signatures.
+
+---
+
+## Contact Detail Format
+
+Each contact line uses a single-letter label with fixed 18px width for alignment:
+
+```html
+<div style="margin-bottom: 3px;">
+  <span style="color: #6B7280; display: inline-block; width: 18px;">M</span>
+  <a href="tel:0400000000" style="color: #27C1F4; text-decoration: none;">0400 000 000</a>
+</div>
+<div style="margin-bottom: 3px;">
+  <span style="color: #6B7280; display: inline-block; width: 18px;">E</span>
+  <a href="mailto:name@integralmedia.com.au" style="color: #27C1F4; text-decoration: none;">name@integralmedia.com.au</a>
+</div>
+<div style="margin-bottom: 3px;">
+  <span style="color: #6B7280; display: inline-block; width: 18px;">W</span>
+  <a href="https://integralmedia.com.au" style="color: #27C1F4; text-decoration: none;">integralmedia.com.au</a>
+</div>
+```
+
+### Address
+
+Separated from contact links by 8px top margin, indented 18px (matching label width), smaller text (11px), lighter colour (`#9CA3AF`):
+
+```
+605/10 Yarra Street, South Yarra, VIC 3141
+```
+
+---
+
+## Full HTML Template
+
+When generating a new team member signature, use this template. Replace the placeholder values.
+
+```html
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 520px;">
+  <tr>
+    <td style="padding-right: 24px; vertical-align: middle; border-right: 2px solid #27C1F4; text-align: center;">
+      <img src="https://reports.integralmedia.com.au/logos/current/png/brandmark/im_brandmark_colour.png" alt="IM" width="80" style="display: block; margin: 0 auto 8px; border: 0;">
+      <div style="text-align: center; line-height: 1.1;">
+        <div style="font-family: 'Julius Sans One', 'Arial Black', sans-serif; font-size: 16px; font-weight: bold; color: #002F6C; letter-spacing: 0.05px; -webkit-text-stroke: 0.5px #002F6C; text-shadow: 0 0 1px #002F6C, 0 0 1px #002F6C;">INTEGRAL</div>
+        <div style="font-family: 'Julius Sans One', 'Arial Black', sans-serif; font-size: 16px; font-weight: bold; color: #002F6C; letter-spacing: 0.05px; -webkit-text-stroke: 0.5px #002F6C; text-shadow: 0 0 1px #002F6C, 0 0 1px #002F6C;">MEDIA</div>
+      </div>
+    </td>
+    <td style="padding-left: 24px; vertical-align: middle;">
+      <div style="margin-bottom: 8px;">
+        <strong style="font-size: 17px; color: #002F6C; display: block; margin-bottom: 2px;"><!-- FULL NAME --></strong>
+        <span style="font-size: 13px; color: #6B7280;"><!-- JOB TITLE --></span>
+      </div>
+      <div style="font-size: 13px; line-height: 1.7; color: #333740; margin-top: 10px;">
+        <div style="margin-bottom: 3px;">
+          <span style="color: #6B7280; display: inline-block; width: 18px;">M</span>
+          <a href="tel:<!-- PHONE_RAW -->" style="color: #27C1F4; text-decoration: none;"><!-- PHONE_FORMATTED --></a>
+        </div>
+        <div style="margin-bottom: 3px;">
+          <span style="color: #6B7280; display: inline-block; width: 18px;">E</span>
+          <a href="mailto:<!-- EMAIL -->" style="color: #27C1F4; text-decoration: none;"><!-- EMAIL --></a>
+        </div>
+        <div style="margin-bottom: 3px;">
+          <span style="color: #6B7280; display: inline-block; width: 18px;">W</span>
+          <a href="https://integralmedia.com.au" style="color: #27C1F4; text-decoration: none;">integralmedia.com.au</a>
+        </div>
+        <div style="margin-top: 8px; font-size: 11px; color: #9CA3AF; padding-left: 18px;">
+          605/10 Yarra Street, South Yarra, VIC 3141
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+```
+
+---
+
+## Generating Signature Pages
+
+When asked to create a signature for a team member, generate a standalone HTML page that wraps the signature table in a copy-paste helper:
+
+1. **Info panel** at top — name, title, instructions ("Select and copy the signature below, then paste into Gmail Settings > Signature")
+2. **Dashed border box** (`3px dashed #27C1F4`) containing the signature table
+3. **"SELECT AND COPY BELOW/ABOVE" hints** in Sky Blue above and below the signature
+4. Include the Google Fonts import for Julius Sans One and Inter in the page `<head>`
+
+### Deployment
+
+Individual signature files are deployed to the VPS at:
+```
+reports.integralmedia.com.au/Claude_Code_Projects/email-signatures/signature-{firstname}-{lastname}.html
+```
+
+The master preview of all signatures lives at:
+```
+reports.integralmedia.com.au/Claude_Code_Projects/email-signatures/ALL-SIGNATURES-PREVIEW.html
+```
+
+---
+
+## Email Signature Do's and Don'ts
+
+### Do
+- Use the exact template above — all signatures must be visually identical in structure
+- Use the hosted brandmark PNG (Gmail strips inline SVG)
+- Include `border: 0` on the image to prevent blue link borders in some email clients
+- Use inline styles on every element (email clients strip `<style>` blocks)
+- Link phone numbers with `tel:` and emails with `mailto:`
+- Keep `text-decoration: none` on all links
+
+### Don't
+- Add social media icons or links (not part of the IM signature standard)
+- Use different colours, fonts, or sizes per team member
+- Include marketing taglines, quotes, or legal disclaimers
+- Use an `<img>` tag for the wordmark text — it's rendered as styled text for crispness
+- Modify the vertical divider colour or width
+- Add the signature to white-label partner communications — use a plain text sign-off instead
 
 ---
 

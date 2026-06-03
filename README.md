@@ -42,6 +42,7 @@ Once installed, just ask Claude to make an HTML document inside Claude Code. Any
 - "Create an HTML report for [client name]"
 - "Make a branded document about our SEO results"
 - "Build an IM presentation for the quarterly review"
+- "Create an email signature for [team member name]"
 
 Claude will automatically use the brand template, inline the logo as SVG, and follow all style rules.
 
@@ -58,6 +59,7 @@ You can also invoke the skill directly with `/im-html-style-guide`.
 | **Lucide icons** | 24 pre-built inline SVG icons (no emoji) |
 | **Mobile responsive** | 768px + 480px breakpoints, tested on mobile devices |
 | **White-label rules** | How to strip IM branding for Higher Ranking / Purpose Digital |
+| **Email signature spec** | Gmail-compatible HTML signature template, typography, colours, deployment guide |
 | **Google Sheets guide** | Colour palette (with RGB 0-1 for API), element specs, WCAG AA, batchUpdate request order |
 
 ## Brand quick reference

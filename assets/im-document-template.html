@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- TEMPLATE: Replace title with document name -->
 <title>Document Title — Integral Media</title>
+<!-- TEMPLATE: Replace description and OG/Twitter values -->
+<meta name="description" content="Page description for search engines">
+<meta property="og:title" content="Document Title — Integral Media">
+<meta property="og:description" content="Description for social sharing">
+<meta property="og:image" content="https://example.com/og.png">
+<meta property="og:url" content="https://example.com/page">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Document Title — Integral Media">
+<meta name="twitter:description" content="Description for Twitter sharing">
+<meta name="twitter:image" content="https://example.com/og.png">
+<!-- TEMPLATE: Replace canonical URL -->
+<link rel="canonical" href="https://example.com/page">
 <!-- Favicon: IM icon mark (inline SVG) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 166 142'><path d='M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144' fill='%2323B2EF'/><path d='M165.181 0H134.199V142H165.181V0Z' fill='%2323B2EF'/><path d='M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723' fill='%2323B2EF'/><path d='M15.4909 32.2727C24.0462 32.2727 30.9817 25.0482 30.9817 16.1364C30.9817 7.2245 24.0462 0 15.4909 0C6.9355 0 0 7.2245 0 16.1364C0 25.0482 6.9355 32.2727 15.4909 32.2727Z' fill='%2323B2EF'/></svg>">
+<!-- Fonts: preload + stylesheet for non-blocking load -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   /* Lucide Icons — inline SVG icons, no external dependency */
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,6 +65,25 @@
     background: var(--lighter);
     -webkit-font-smoothing: antialiased;
   }
+
+  /* ══════════════════════════════════════════
+     ACCESSIBILITY
+     ══════════════════════════════════════════ */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 16px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 0 0 6px 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
 
   /* ══════════════════════════════════════════
      HERO
@@ -173,6 +207,12 @@
   .nav-inner a:hover {
     color: var(--navy);
     border-bottom-color: var(--sky);
+  }
+
+  .nav-inner a:focus-visible {
+    outline: 2px solid var(--sky);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   /* ══════════════════════════════════════════
@@ -692,6 +732,162 @@
   }
 
   /* ══════════════════════════════════════════
+     PULLQUOTE
+     ══════════════════════════════════════════ */
+  .pullquote {
+    background: var(--sky-muted);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 8px 8px 0;
+    padding: 28px 32px;
+    margin: 20px 0;
+  }
+  .pullquote blockquote {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--navy);
+    font-style: normal;
+  }
+  .pullquote .attribution {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--slate);
+    margin-top: 12px;
+  }
+  .pullquote + .pullquote { margin-top: 16px; }
+
+  /* ══════════════════════════════════════════
+     STATS BAR
+     ══════════════════════════════════════════ */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    background: var(--white);
+    border: 1px solid var(--cool-grey);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .stat { text-align: center; }
+  .stat-value {
+    display: block;
+    font-family: var(--display);
+    font-size: 32px;
+    text-transform: uppercase;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--slate);
+    margin-top: 4px;
+  }
+
+  /* ══════════════════════════════════════════
+     RELEASE BANNER
+     ══════════════════════════════════════════ */
+  .release-banner {
+    background: var(--navy);
+    color: var(--sky);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  /* ══════════════════════════════════════════
+     CTA BAR
+     ══════════════════════════════════════════ */
+  .cta-bar {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .cta-bar p {
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .cta-bar a {
+    background: var(--sky);
+    color: var(--navy);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .cta-bar a:hover { background: var(--sky-light); }
+  .cta-bar a:focus-visible { outline: 2px solid rgba(255,255,255,0.6); outline-offset: 2px; }
+
+  /* ══════════════════════════════════════════
+     MEDIA CONTACT
+     ══════════════════════════════════════════ */
+  .media-contact {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 32px 0;
+  }
+  .media-contact h3 {
+    font-family: var(--display);
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .media-contact .contact-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+  .media-contact .contact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--sky);
+    margin-bottom: 2px;
+  }
+  .media-contact span,
+  .media-contact a {
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 15px;
+  }
+  .media-contact a {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s;
+  }
+  .media-contact a:hover,
+  .media-contact a:focus-visible { border-bottom-color: var(--sky); outline: none; }
+
+  /* ══════════════════════════════════════════
      RESPONSIVE — 768px
      ══════════════════════════════════════════ */
   @media (max-width: 768px) {
@@ -734,6 +930,14 @@
 
     /* Grids */
     .status-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .media-contact { grid-template-columns: 1fr; }
+
+    /* New components */
+    .cta-bar { flex-direction: column; text-align: center; }
+    .release-banner { font-size: 10px; letter-spacing: 1.5px; }
+    .pullquote { padding: 20px 24px; }
+    .pullquote blockquote { font-size: 15px; }
 
     /* Tables — horizontal scroll */
     .card:has(.im-table) { padding: 20px 0; }
@@ -776,9 +980,22 @@
      GLOBAL MOBILE SAFETY
      ══════════════════════════════════════════ */
   img, svg { max-width: 100%; height: auto; }
+
+  /* ══════════════════════════════════════════
+     PRINT
+     ══════════════════════════════════════════ */
+  @media print {
+    .nav-strip, .release-banner { display: none; }
+    .hero { padding: 30px 0; }
+    section { break-inside: avoid; }
+    .card { break-inside: avoid; box-shadow: none; border: 1px solid var(--cool-grey); }
+  }
 </style>
 </head>
 <body>
+
+<!-- Skip link for keyboard navigation -->
+<a href="#section-1" class="skip-link">Skip to content</a>
 
 <!-- ══════════════════════════════════════════
      HERO
@@ -788,7 +1005,8 @@
   <div class="hero-inner">
     <div class="hero-logo">
       <!-- Integral Media logo (colour on dark bg) — icon mark #23B2EF, wordmark white -->
-      <svg viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg role="img" viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <title>Integral Media</title>
         <path d="M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144" fill="#23B2EF"/>
         <path d="M165.181 0H134.199V142H165.181V0Z" fill="#23B2EF"/>
         <path d="M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723" fill="#23B2EF"/>
@@ -826,6 +1044,7 @@
     <a href="#section-1">Section One</a>
     <a href="#section-2">Section Two</a>
     <a href="#section-3">Section Three</a>
+    <a href="#section-4">More Components</a>
   </div>
 </nav>
 
@@ -835,13 +1054,13 @@
 <section id="section-1">
   <div class="container">
     <div class="section-header">
-      <span class="section-number">01</span>
+      <span class="section-number" aria-hidden="true">01</span>
       <h2 class="section-title">Section Title</h2>
     </div>
 
     <!-- Example: Basic card -->
     <div class="card">
-      <h3><span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Card Title</h3>
+      <h3><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Card Title</h3>
       <p>Card content goes here. Use cards to group related information.</p>
       <ul>
         <li>Bullet point with sky-blue dot</li>
@@ -856,7 +1075,7 @@
 
     <!-- Example: Table -->
     <div class="card">
-      <h3><span class="icon"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span> Table Example</h3>
+      <h3><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span> Table Example</h3>
       <table class="im-table">
         <thead>
           <tr>
@@ -880,7 +1099,7 @@
 <section id="section-2">
   <div class="container">
     <div class="section-header">
-      <span class="section-number">02</span>
+      <span class="section-number" aria-hidden="true">02</span>
       <h2 class="section-title">Step-by-Step Process</h2>
     </div>
 
@@ -911,7 +1130,7 @@
 <section id="section-3">
   <div class="container">
     <div class="section-header">
-      <span class="section-number">03</span>
+      <span class="section-number" aria-hidden="true">03</span>
       <h2 class="section-title">Status Options</h2>
     </div>
 
@@ -933,6 +1152,63 @@
 </section>
 
 <!-- ══════════════════════════════════════════
+     SECTION 4 — New component examples
+     ══════════════════════════════════════════ -->
+<section id="section-4">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number" aria-hidden="true">04</span>
+      <h2 class="section-title">More Components</h2>
+    </div>
+
+    <!-- Example: Stats bar -->
+    <div class="stats-bar">
+      <div class="stat"><span class="stat-value">358</span><span class="stat-label">Occupations</span></div>
+      <div class="stat"><span class="stat-value">13.9M</span><span class="stat-label">Workers</span></div>
+      <div class="stat"><span class="stat-value">3/10</span><span class="stat-label">Median Score</span></div>
+      <div class="stat"><span class="stat-value">4</span><span class="stat-label">AI Models</span></div>
+    </div>
+
+    <!-- Example: Pullquote -->
+    <div class="pullquote">
+      <blockquote>"Use pullquotes to highlight key statements from research findings, stakeholder quotes, or editorial commentary."</blockquote>
+      <p class="attribution">— Speaker Name, Title</p>
+    </div>
+
+    <!-- Example: CTA bar -->
+    <div class="cta-bar">
+      <p>Want to explore the data?</p>
+      <a href="https://example.com">Visit the interactive map</a>
+    </div>
+
+    <!-- Example: Media contact card -->
+    <div class="media-contact">
+      <div>
+        <h3>Media Contact</h3>
+        <div class="contact-item">
+          <span class="contact-label">Name</span>
+          <span>Contact Person</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Role</span>
+          <span>Head of Communications</span>
+        </div>
+      </div>
+      <div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:contact@example.com">contact@example.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Web</span>
+          <a href="https://example.com">example.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
      FOOTER
      Replace: "Last updated" date
      ══════════════════════════════════════════ -->
@@ -940,7 +1216,8 @@
   <div class="container">
     <div class="footer-logo">
       <!-- Integral Media logo (subdued on dark bg) -->
-      <svg viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg role="img" viewBox="0 0 1208 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <title>Integral Media</title>
         <path d="M122.748 94.3069L106.15 139.418L35.686 3.69806L33.6758 0L74.2812 0.106144" fill="#23B2EF"/>
         <path d="M165.181 0H134.199V142H165.181V0Z" fill="#23B2EF"/>
         <path d="M26.7985 141.723H0.523438V81.779C0.523438 81.779 0.524017 55.1074 0.524017 53.4409H30.9802V141.723" fill="#23B2EF"/>

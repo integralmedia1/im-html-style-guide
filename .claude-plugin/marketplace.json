@@ -9,9 +9,13 @@
   "plugins": [
     {
       "name": "im-html-style-guide",
-      "description": "Brand style guide, colour palette, typography, components, and HTML template for Integral Media branded documents",
+      "description": "Brand style guide, colour palette, typography, components, and HTML template for Integral Media branded documents, Google Docs and Google Sheets",
       "source": "./",
-      "skills": ["./skills/im-html-style-guide"],
+      "skills": [
+        "./skills/im-html-style-guide",
+        "./skills/im-sheets-style-guide",
+        "./skills/im-docs-style-guide"
+      ],
       "category": "content"
     }
   ]
